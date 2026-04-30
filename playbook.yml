@@ -1,0 +1,16 @@
+- name: Deploy Website to Nginx
+  hosts: localhost
+  become: yes
+
+  tasks:
+
+    - name: Copy website files to nginx
+      copy:
+        src: "{{ playbook_dir }}/"
+        dest: /var/www/html/
+        remote_src: no
+
+    - name: Restart nginx
+      service:
+        name: nginx
+        state: restarted
