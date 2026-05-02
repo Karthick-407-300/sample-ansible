@@ -4,9 +4,9 @@
 
   tasks:
 
-    - name: Copy website files to nginx
+    - name: Copy website files
       copy:
-        src: "{{ playbook_dir }}/"
+        src: site/
         dest: /var/www/html/
         remote_src: no
 
