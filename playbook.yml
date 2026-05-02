@@ -2,15 +2,17 @@
   hosts: localhost
   become: yes
 
-  tasks:
+  roles:
+    - nginx
 
+  tasks:
     - name: Copy website files
       copy:
-        src: site/
+        src: "{{ playbook_dir }}/"
         dest: /var/www/html/
         remote_src: no
-
-    - name: Restart nginx
-      service:
-        name: nginx
-        state: restarted
+        exclude:
+          - roles
+          - inventory
+          - playbook.yml
+          - Jenkinsfile
