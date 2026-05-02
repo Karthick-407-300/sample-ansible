@@ -1,6 +1,18 @@
-events {}
+events {
+    worker_connections 1024;
+}
 
 http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+    keepalive_timeout 65;
+
+    # Logging
+    access_log /var/log/nginx/access.log;
+    error_log  /var/log/nginx/error.log;
+
     server {
         listen 80;
         server_name localhost;
@@ -8,8 +20,21 @@ http {
         root /var/www/html;
         index index.html;
 
+        # Main route
         location / {
             try_files $uri $uri/ =404;
+        }
+
+        # Static file caching (CSS, JS, images)
+        location ~* \.(css|js|png|jpg|jpeg|gif|ico)$ {
+            expires 7d;
+            add_header Cache-Control "public";
+        }
+
+        # Custom error page
+        error_page 404 /404.html;
+        location = /404.html {
+            internal;
         }
     }
 }
