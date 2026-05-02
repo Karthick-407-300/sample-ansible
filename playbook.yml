@@ -11,8 +11,3 @@
         src: "{{ playbook_dir }}/"
         dest: /var/www/html/
         remote_src: no
-        exclude:
-          - roles
-          - inventory
-          - playbook.yml
-          - Jenkinsfile
