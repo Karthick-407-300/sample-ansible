@@ -1,19 +1,19 @@
-- name: Create server1 directory
+- name: Remove old html (important)
   file:
-    path: /var/www/html/server1
+    path: /var/www/html
+    state: absent
+
+- name: Recreate html directory
+  file:
+    path: /var/www/html
     state: directory
 
-- name: Create server2 directory
-  file:
-    path: /var/www/html/server2
-    state: directory
-
-- name: Copy server1 files
+- name: Copy server1
   copy:
     src: "{{ playbook_dir }}/server1/"
     dest: /var/www/html/server1/
 
-- name: Copy server2 files
+- name: Copy server2
   copy:
     src: "{{ playbook_dir }}/server2/"
     dest: /var/www/html/server2/
