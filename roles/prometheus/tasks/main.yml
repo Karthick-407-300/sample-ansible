@@ -1,0 +1,24 @@
+- name: Download Prometheus
+  get_url:
+    url: https://github.com/prometheus/prometheus/releases/download/v2.52.0/prometheus-2.52.0.linux-amd64.tar.gz
+    dest: /tmp/prometheus.tar.gz
+
+- name: Extract Prometheus
+  unarchive:
+    src: /tmp/prometheus.tar.gz
+    dest: /opt/
+    remote_src: yes
+
+- name: Create symlink
+  file:
+    src: /opt/prometheus-2.52.0.linux-amd64
+    dest: /opt/prometheus
+    state: link
+
+- name: Copy config
+  template:
+    src: prometheus.yml.j2
+    dest: /opt/prometheus/prometheus.yml
+
+- name: Run Prometheus
+  shell: nohup /opt/prometheus/prometheus --config.file=/opt/prometheus/prometheus.yml &

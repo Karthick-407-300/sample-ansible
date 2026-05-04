@@ -1,7 +1,10 @@
-- name: Deploy Website + Load Balancer
+- name: Full DevOps Setup (Web + LB + Monitoring)
   hosts: localhost
   become: yes
 
   roles:
     - nginx
     - haproxy
+    - node_exporter
+    - prometheus
+    - grafana
