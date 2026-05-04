@@ -4,14 +4,19 @@ events {
 
 http {
     include /etc/nginx/mime.types;
-    default_type  application/octet-stream;
+    default_type application/octet-stream;
 
     sendfile on;
     keepalive_timeout 65;
 
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+
     server {
         listen 8081;
-        root /var/www/html/app1;
+        server_name localhost;
+
+        root /var/www/html/server1;
         index index.html;
 
         location / {
@@ -21,7 +26,9 @@ http {
 
     server {
         listen 8082;
-        root /var/www/html/app2;
+        server_name localhost;
+
+        root /var/www/html/server2;
         index index.html;
 
         location / {

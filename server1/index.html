@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server 1</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #3a0f0f, #7a1c1c, #b22222);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .hero { padding: 120px 0; }
+        .badge-status {
+            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background-color: red;
+        }
+        .card {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+        }
+        .footer {
+            margin-top: 50px;
+            padding: 20px;
+            text-align: center;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark shadow">
+    <div class="container">
+        <span class="navbar-brand fs-4">🚀 DevOps Demo - SERVER 1</span>
+    </div>
+</nav>
+
+<div class="container text-center hero">
+    <h1 class="display-2 fw-bold">🔥 SERVER 1 RESPONSE</h1>
+    <p class="lead mt-3">Handled by NGINX (8081)</p>
+
+    <div class="mt-4">
+        <span class="badge-status">SERVER 1 ACTIVE 🔴</span>
+    </div>
+</div>
+
+<div class="footer">
+    <p>Server 1 | Load Balanced via HAProxy</p>
+</div>
+
+</body>
+</html>
