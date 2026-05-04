@@ -1,0 +1,17 @@
+global
+    log /dev/log local0
+
+defaults
+    mode http
+    timeout connect 5s
+    timeout client 50s
+    timeout server 50s
+
+frontend my_frontend
+    bind *:80
+    default_backend my_backend
+
+backend my_backend
+    balance roundrobin
+    server app1 127.0.0.1:8081 check
+    server app2 127.0.0.1:8082 check

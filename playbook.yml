@@ -1,13 +1,7 @@
-- name: Deploy Website to Nginx
+- name: Deploy Website + Load Balancer
   hosts: localhost
   become: yes
 
   roles:
     - nginx
-
-  tasks:
-    - name: Copy website files
-      copy:
-        src: "{{ playbook_dir }}/"
-        dest: /var/www/html/
-        remote_src: no
+    - haproxy
