@@ -1,6 +1,39 @@
-- name: Deploy nginx config
-  template:
-    src: nginx.conf.j2
-    dest: /etc/nginx/nginx.conf
-    validate: "nginx -t -c %s"
-  notify: Restart nginx
+- name: Ensure base html directory exists
+  file:
+    path: /var/www/html
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'
+
+- name: Create server1 directory
+  file:
+    path: /var/www/html/server1
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'
+
+- name: Create server2 directory
+  file:
+    path: /var/www/html/server2
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'
+
+- name: Copy server1 files
+  copy:
+    src: "{{ playbook_dir }}/server1/"
+    dest: /var/www/html/server1/
+    owner: www-data
+    group: www-data
+    mode: '0644'
+
+- name: Copy server2 files
+  copy:
+    src: "{{ playbook_dir }}/server2/"
+    dest: /var/www/html/server2/
+    owner: www-data
+    group: www-data
+    mode: '0644'
